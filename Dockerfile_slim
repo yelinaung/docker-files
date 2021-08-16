@@ -1,0 +1,14 @@
+FROM python:3.9-slim-buster
+LABEL maintainer="Ye Lin Aung <me@yelinaung.com>"
+
+# using ARG here instead of ENV
+# ENV will persist the value throughout. i.e evern when the container is running
+# ARG will only persist during the build
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NONINTERACTIVE_SEEN=true
+ENV TZ=Asia/Singapore
+RUN apt-get update && apt-get install -y curl dnsutils \
+    libffi-dev libssl-dev libpq-dev libffi-dev tzdata && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    pip3 install --upgrade pip && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -1,0 +1,10 @@
+FROM ubuntu:20.04
+
+# useradd flags
+# -r will create a system account
+# -u is for uid
+RUN apt-get update && apt-get install -y htop && \
+    useradd -r -u 1000 appuser
+
+USER appuser
+ENTRYPOINT ["sleep", "infinity"]

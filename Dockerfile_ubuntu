@@ -1,0 +1,7 @@
+FROM ubuntu:20.04
+
+LABEL maintainer="Ye Lin Aung <me@yelinaung.com>"
+
+RUN apt-get update && apt-get install -y htop bash lshw curl jq
+
+ENTRYPOINT ["sleep", "infinity"]

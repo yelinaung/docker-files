@@ -1,0 +1,6 @@
+FROM ubuntu:20.04
+LABEL maintainer="Ye Lin Aung <me@yelinaung.com>"
+RUN apt-get update && apt-get install -y htop bash lshw curl --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+ENTRYPOINT ["sleep", "infinity"]
